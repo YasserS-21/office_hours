@@ -1,6 +1,13 @@
 import HarryPotterCharacter from "../components/HarryPotterCharacter"
-export default function HarryPotterList ({harryPotterCharacters}) {
+import {useState, useEffect} from "react"
+export default function HarryPotterList () {
+    const [harryPotterCharacters, setHarryPotterCharacters] = useState([])
 
+    useEffect(() => {
+     fetch("https://hp-api.onrender.com/api/characters")
+     .then(response => response.json())
+     .then((data) => setHarryPotterCharacters(data))
+    }, [])  
     
     return (
         <div className="harry-potter-list__page">
